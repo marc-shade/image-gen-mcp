@@ -26,8 +26,8 @@ from typing import Optional, Dict, List, Any
 from dataclasses import dataclass
 
 # Configure DSPy to use a remote LLM (Ollama on cluster node)
-# Avoid local CPU inference per user's requirements
-OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://192.168.1.79:11434")
+# Avoid local CPU inference - set OLLAMA_HOST to your GPU node
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 
 
 @dataclass
