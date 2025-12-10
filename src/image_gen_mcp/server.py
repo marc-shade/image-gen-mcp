@@ -65,7 +65,7 @@ logging.basicConfig(
 logger = logging.getLogger("image-gen-mcp")
 
 # Output directory for generated images
-OUTPUT_DIR = Path(os.getenv("IMAGE_GEN_OUTPUT_DIR", "/mnt/agentic-system/generated-images"))
+OUTPUT_DIR = Path(os.getenv("IMAGE_GEN_OUTPUT_DIR", "${AGENTIC_SYSTEM_PATH:-/opt/agentic}/generated-images"))
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Create MCP server

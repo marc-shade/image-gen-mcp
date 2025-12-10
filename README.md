@@ -23,7 +23,7 @@ Multi-provider image generation for AGI visual communication.
 ## Installation
 
 ```bash
-cd /mnt/agentic-system/mcp-servers/image-gen-mcp
+cd ${AGENTIC_SYSTEM_PATH:-/opt/agentic}/mcp-servers/image-gen-mcp
 pip install -e .
 ```
 
@@ -43,7 +43,7 @@ Add to `~/.claude.json`:
         "HUGGINGFACE_API_TOKEN": "your-hf-token",
         "TOGETHER_API_KEY": "your-together-key",
         "REPLICATE_API_TOKEN": "your-replicate-token",
-        "IMAGE_GEN_OUTPUT_DIR": "/mnt/agentic-system/generated-images"
+        "IMAGE_GEN_OUTPUT_DIR": "${AGENTIC_SYSTEM_PATH:-/opt/agentic}/generated-images"
       }
     }
   }
@@ -54,7 +54,7 @@ Add to `~/.claude.json`:
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `IMAGE_GEN_OUTPUT_DIR` | No | Where to save images (default: `/mnt/agentic-system/generated-images`) |
+| `IMAGE_GEN_OUTPUT_DIR` | No | Where to save images (default: `${AGENTIC_SYSTEM_PATH:-/opt/agentic}/generated-images`) |
 | `CLOUDFLARE_API_TOKEN` | For CF | Cloudflare API token |
 | `CLOUDFLARE_ACCOUNT_ID` | For CF | Cloudflare account ID |
 | `HUGGINGFACE_API_TOKEN` | For HF | Hugging Face token |
