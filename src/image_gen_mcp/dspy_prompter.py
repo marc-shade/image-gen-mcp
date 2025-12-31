@@ -88,67 +88,67 @@ class PixelCorgiPrompter(dspy.Module):
         self.context_to_visual = dspy.ChainOfThought(ContextToVisualMetaphor)
         self.generate_prompt = dspy.Predict(GeneratePixelCorgiPrompt)
 
-        # Fallback visual mappings - symbolic fantasy scenes with Pixel leading subagent companions
+        # Fallback visual mappings for when LLM is unavailable
         self.fallback_mappings = {
             "security": {
-                "props": "knight armor, glowing shield",
-                "environment": "castle watchtower at dusk, protective barrier dome",
-                "pose": "vigilant guardian stance with hawk scout companions",
-                "effects": "scanning beams, shield runes glowing, sentinel birds circling"
+                "props": "detective hat, magnifying glass",
+                "environment": "dark cyberpunk background with matrix code",
+                "pose": "alert investigative stance, one paw raised",
+                "effects": "floating lock icons, shield symbols"
             },
             "coding": {
-                "props": "wizard robe, enchanted quill",
-                "environment": "arcane scriptorium tower with floating ancient tomes",
-                "pose": "Pixel scribe commanding sprite helpers writing magical runes",
-                "effects": "glowing ink trails, runic symbols materializing, quill familiars"
+                "props": "tiny glasses, mechanical keyboard",
+                "environment": "cozy desk with monitors showing code",
+                "pose": "focused typing pose, concentrated expression",
+                "effects": "floating code brackets, semicolons"
             },
             "git": {
-                "props": "postmaster cap, magical satchel",
-                "environment": "sky roads with branch pathways, courier station in clouds",
-                "pose": "Pixel leading messenger bird fleet delivering glowing parcels",
-                "effects": "flying letters, branch-shaped aurora trails, delivery sparkles"
+                "props": "delivery cap, small package",
+                "environment": "branching tree paths, version timeline",
+                "pose": "proud delivery stance, tail wagging",
+                "effects": "floating git branch icons, checkmarks"
             },
             "database": {
-                "props": "librarian robes, crystal orb",
-                "environment": "infinite crystal archive dimension with data obelisks",
-                "pose": "Pixel curator with mouse archivists organizing glowing records",
-                "effects": "floating data crystals, sorting beams, organized constellations"
+                "props": "tiny filing cabinet, data scrolls",
+                "environment": "organized library of glowing data cubes",
+                "pose": "organized librarian pose, sorting",
+                "effects": "floating table icons, query symbols"
             },
             "web": {
-                "props": "artist beret, magic paintbrush",
-                "environment": "floating canvas realm with interface gardens",
-                "pose": "Pixel painter with butterfly assistants creating portal windows",
-                "effects": "brushstroke trails becoming interfaces, color magic, design sprites"
+                "props": "painter beret, tiny brush",
+                "environment": "canvas with website wireframes",
+                "pose": "artistic creative pose, painting",
+                "effects": "floating HTML tags, CSS brackets"
             },
             "devops": {
-                "props": "architect helmet, blueprint scroll",
-                "environment": "construction realm with floating building blocks",
-                "pose": "Pixel architect directing beaver and ant builder crews",
-                "effects": "crane golems, assembling magical structures, gear constellations"
+                "props": "hardhat, tiny wrench",
+                "environment": "pipeline with gears and containers",
+                "pose": "builder stance, working hard",
+                "effects": "floating Docker whales, gear icons"
             },
             "research": {
-                "props": "explorer hat, discovery compass",
-                "environment": "infinite library dimension with knowledge nebulas",
-                "pose": "Pixel explorer with wise owl companions discovering ancient secrets",
-                "effects": "books opening with light, knowledge orbs floating, eureka sparkles"
+                "props": "professor glasses, stack of papers",
+                "environment": "cozy library with floating books",
+                "pose": "thoughtful reading pose, paw on chin",
+                "effects": "floating lightbulbs, question marks turning to exclamations"
             },
             "testing": {
-                "props": "alchemist goggles, potion vials",
-                "environment": "laboratory tower with experiment chambers",
-                "pose": "Pixel scientist with mouse lab assistants running magical tests",
-                "effects": "bubbling potions, checkmark crystals forming, verification magic"
+                "props": "lab coat, test tubes",
+                "environment": "laboratory with checkmark displays",
+                "pose": "scientist examining pose",
+                "effects": "green checkmarks, red X marks"
             },
             "error": {
-                "props": "detective cloak, puzzle piece",
-                "environment": "foggy maze with mysterious red glowing fragments",
-                "pose": "Pixel and owl companion studying scattered puzzle pieces",
-                "effects": "question mark wisps, mystery fog, clue trails appearing"
+                "props": "bandaid, confused swirl above head",
+                "environment": "slightly glitchy background",
+                "pose": "confused tilted head, worried expression",
+                "effects": "floating error symbols, bug icons"
             },
             "success": {
-                "props": "champion cape, golden chalice",
-                "environment": "mountain peak at sunrise with treasure revealed",
-                "pose": "Pixel celebrating with fairy companion squad, victory leap",
-                "effects": "golden light rays, confetti rain, sparkle explosions, triumph fanfare"
+                "props": "tiny trophy, confetti cannon",
+                "environment": "celebration stage with sparkles",
+                "pose": "jumping victory pose, huge smile",
+                "effects": "confetti, stars, sparkles everywhere"
             }
         }
 
@@ -207,19 +207,19 @@ class PixelCorgiPrompter(dspy.Module):
         domain = context.domain or self._detect_domain(context)
         mapping = self.fallback_mappings.get(domain, self.fallback_mappings["coding"])
 
-        base = "8-bit NES pixel art, cute tricolor corgi Pixel leading team of companions, clean pixels, retro game fantasy scene"
+        base = "8-bit NES pixel art sprite, cute corgi dog Pixel, orange white black tricolor, clean pixels, retro game style"
 
         prompt = f"{base}, {mapping['props']}, {mapping['environment']}, {mapping['pose']}, {mapping['effects']}"
 
-        # Add mood modifiers - fantasy themed
+        # Add mood modifiers
         if context.mood == "excited":
-            prompt += ", magical energy aura, companions celebrating, adventure spirit"
+            prompt += ", energetic bouncy pose, sparkling eyes"
         elif context.mood == "tired":
-            prompt += ", campfire rest scene, sleepy companions curled up, moonlight"
+            prompt += ", sleepy droopy eyes, yawning"
         elif context.mood == "confused":
-            prompt += ", mysterious fog, companions investigating, question wisps"
+            prompt += ", tilted head, question mark above"
         elif context.mood == "celebrating":
-            prompt += ", victory fireworks, companions cheering, golden triumph"
+            prompt += ", party hat, confetti, huge smile"
 
         return prompt
 

@@ -1,14 +1,5 @@
 # Image Generation MCP Server
 
-[![MCP](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io)
-[![Python-3.10+](https://img.shields.io/badge/Python-3.10%2B-green)](https://python.org)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
-[![Part of Agentic System](https://img.shields.io/badge/Part_of-Agentic_System-brightgreen)](https://github.com/marc-shade/agentic-system-oss)
-
-> **Multi-provider image generation for AGI visual communication with automatic fallback.**
-
-Part of the [Agentic System](https://github.com/marc-shade/agentic-system-oss) - a 24/7 autonomous AI framework with persistent memory.
-
 Multi-provider image generation for AGI visual communication.
 
 ## Features
@@ -32,7 +23,7 @@ Multi-provider image generation for AGI visual communication.
 ## Installation
 
 ```bash
-cd ${AGENTIC_SYSTEM_PATH:-/opt/agentic}/mcp-servers/image-gen-mcp
+cd /mnt/agentic-system/mcp-servers/image-gen-mcp
 pip install -e .
 ```
 
@@ -52,7 +43,7 @@ Add to `~/.claude.json`:
         "HUGGINGFACE_API_TOKEN": "your-hf-token",
         "TOGETHER_API_KEY": "your-together-key",
         "REPLICATE_API_TOKEN": "your-replicate-token",
-        "IMAGE_GEN_OUTPUT_DIR": "${AGENTIC_SYSTEM_PATH:-/opt/agentic}/generated-images"
+        "IMAGE_GEN_OUTPUT_DIR": "/mnt/agentic-system/generated-images"
       }
     }
   }
@@ -63,7 +54,7 @@ Add to `~/.claude.json`:
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `IMAGE_GEN_OUTPUT_DIR` | No | Where to save images (default: `${AGENTIC_SYSTEM_PATH:-/opt/agentic}/generated-images`) |
+| `IMAGE_GEN_OUTPUT_DIR` | No | Where to save images (default: `/mnt/agentic-system/generated-images`) |
 | `CLOUDFLARE_API_TOKEN` | For CF | Cloudflare API token |
 | `CLOUDFLARE_ACCOUNT_ID` | For CF | Cloudflare account ID |
 | `HUGGINGFACE_API_TOKEN` | For HF | Hugging Face token |
@@ -211,19 +202,3 @@ The server automatically falls back through providers if one fails:
 ## License
 
 MIT
----
-
-## Part of the MCP Ecosystem
-
-This server integrates with other MCP servers for comprehensive AGI capabilities:
-
-| Server | Purpose |
-|--------|---------|
-| [enhanced-memory-mcp](https://github.com/marc-shade/enhanced-memory-mcp) | 4-tier persistent memory with semantic search |
-| [agent-runtime-mcp](https://github.com/marc-shade/agent-runtime-mcp) | Persistent task queues and goal decomposition |
-| [agi-mcp](https://github.com/marc-shade/agi-mcp) | Full AGI orchestration with 21 tools |
-| [cluster-execution-mcp](https://github.com/marc-shade/cluster-execution-mcp) | Distributed task routing across nodes |
-| [node-chat-mcp](https://github.com/marc-shade/node-chat-mcp) | Inter-node AI communication |
-| [ember-mcp](https://github.com/marc-shade/ember-mcp) | Production-only policy enforcement |
-
-See [agentic-system-oss](https://github.com/marc-shade/agentic-system-oss) for the complete framework.
